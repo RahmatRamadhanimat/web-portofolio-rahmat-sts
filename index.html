@@ -1,112 +1,710 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portofolio - Rahmat Ramadhani</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Rahmat Ramadhani — Software Engineering Student Portfolio</title>
+  <meta name="description" content="Portfolio resmi Rahmat Ramadhani, siswa Rekayasa Perangkat Lunak di SMK Krian 1 Sidoarjo.">
+  
+  <!-- Font Google: Plus Jakarta Sans & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css?v=2026">
+  <style id="modal-critical-styles">
+    /* Gaya Modal Popup Detail Terpadu & Terisolasi */
+    #detail-modal.modal-backdrop {
+      position: fixed !important;
+      inset: 0 !important;
+      top: 0 !important;
+      left: 0 !important;
+      width: 100vw !important;
+      height: 100vh !important;
+      background: rgba(6, 9, 15, 0.84) !important;
+      backdrop-filter: blur(14px) !important;
+      -webkit-backdrop-filter: blur(14px) !important;
+      z-index: 99999 !important;
+      display: none !important;
+      align-items: center !important;
+      justify-content: center !important;
+      padding: 1.25rem !important;
+      opacity: 0 !important;
+      visibility: hidden !important;
+      pointer-events: none !important;
+      overflow: hidden !important;
+      transition: opacity 0.28s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.28s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    }
+    #detail-modal.modal-backdrop.active {
+      display: flex !important;
+      opacity: 1 !important;
+      visibility: visible !important;
+      pointer-events: auto !important;
+    }
+    #detail-modal .modal-dialog {
+      position: relative !important;
+      width: 100% !important;
+      max-width: 740px !important;
+      max-height: 90vh !important;
+      display: flex !important;
+      flex-direction: column !important;
+      margin: auto !important;
+    }
+    #detail-modal .modal-card {
+      position: relative !important;
+      background: #11141e !important;
+      background: linear-gradient(180deg, #161b2b 0%, #101420 100%) !important;
+      border: 1px solid rgba(255, 255, 255, 0.12) !important;
+      border-radius: 20px !important;
+      box-shadow: 0 24px 64px -12px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(59, 130, 246, 0.18), 0 0 40px -10px rgba(59, 130, 246, 0.15) !important;
+      overflow: hidden !important;
+      display: flex !important;
+      flex-direction: column !important;
+      max-height: 90vh !important;
+      transform: scale(0.92) translateY(16px) !important;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    }
+    #detail-modal.modal-backdrop.active .modal-card {
+      transform: scale(1) translateY(0) !important;
+    }
+    #detail-modal .modal-close-btn {
+      position: absolute !important;
+      top: 1rem !important;
+      right: 1rem !important;
+      z-index: 20 !important;
+      width: 38px !important;
+      height: 38px !important;
+      border-radius: 50% !important;
+      background: rgba(22, 26, 39, 0.85) !important;
+      backdrop-filter: blur(8px) !important;
+      -webkit-backdrop-filter: blur(8px) !important;
+      border: 1px solid rgba(255, 255, 255, 0.14) !important;
+      color: #94a3b8 !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      cursor: pointer !important;
+      transition: all 0.2s ease !important;
+      padding: 0 !important;
+      outline: none !important;
+    }
+    #detail-modal .modal-close-btn:hover {
+      color: #ffffff !important;
+      background: rgba(59, 130, 246, 0.2) !important;
+      border-color: rgba(59, 130, 246, 0.5) !important;
+      transform: rotate(90deg) scale(1.06) !important;
+    }
+    #detail-modal .modal-body {
+      padding: 2rem !important;
+      overflow-y: auto !important;
+      overscroll-behavior: contain !important;
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 1.35rem !important;
+      color: #f8fafc !important;
+    }
+    #detail-modal .modal-body::-webkit-scrollbar { width: 6px; }
+    #detail-modal .modal-body::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.03); border-radius: 999px; }
+    #detail-modal .modal-body::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.18); border-radius: 999px; }
+    #detail-modal .modal-header-meta {
+      display: flex !important;
+      align-items: center !important;
+      gap: 0.6rem !important;
+      flex-wrap: wrap !important;
+      padding-right: 2.5rem !important;
+    }
+    #detail-modal .modal-sub-badge {
+      font-size: 0.78rem !important;
+      font-weight: 600 !important;
+      padding: 0.28rem 0.75rem !important;
+      border-radius: 9999px !important;
+      background: rgba(255, 255, 255, 0.06) !important;
+      color: #94a3b8 !important;
+      border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    }
+    #detail-modal .modal-title {
+      font-size: 1.55rem !important;
+      font-weight: 800 !important;
+      line-height: 1.3 !important;
+      color: #f8fafc !important;
+      margin: 0 !important;
+      letter-spacing: -0.02em !important;
+    }
+    #detail-modal .modal-media-box {
+      position: relative !important;
+      width: 100% !important;
+      border-radius: 14px !important;
+      overflow: hidden !important;
+      border: 1px solid rgba(255, 255, 255, 0.1) !important;
+      background: #090b11 !important;
+      max-height: 320px !important;
+    }
+    #detail-modal .modal-media-img {
+      width: 100% !important;
+      height: 240px !important;
+      object-fit: cover !important;
+      display: block !important;
+    }
+    #detail-modal .modal-media-zoom {
+      position: absolute !important;
+      bottom: 0.85rem !important;
+      right: 0.85rem !important;
+      background: rgba(9, 11, 17, 0.85) !important;
+      backdrop-filter: blur(8px) !important;
+      -webkit-backdrop-filter: blur(8px) !important;
+      border: 1px solid rgba(255, 255, 255, 0.16) !important;
+      color: #f8fafc !important;
+      font-size: 0.78rem !important;
+      font-weight: 600 !important;
+      padding: 0.4rem 0.8rem !important;
+      border-radius: 9999px !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 0.45rem !important;
+      text-decoration: none !important;
+    }
+    #detail-modal .modal-info-card {
+      display: grid !important;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)) !important;
+      gap: 0.85rem !important;
+      padding: 1rem 1.15rem !important;
+      background: rgba(22, 26, 39, 0.7) !important;
+      border: 1px solid rgba(255, 255, 255, 0.08) !important;
+      border-radius: 14px !important;
+    }
+    #detail-modal .modal-info-col {
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 0.25rem !important;
+    }
+    #detail-modal .modal-info-col small {
+      font-size: 0.75rem !important;
+      color: #64748b !important;
+      text-transform: uppercase !important;
+      letter-spacing: 0.06em !important;
+      font-weight: 600 !important;
+    }
+    #detail-modal .modal-info-col strong {
+      font-size: 0.92rem !important;
+      color: #f8fafc !important;
+      font-weight: 600 !important;
+    }
+    #detail-modal .modal-copy-id-row {
+      display: flex !important;
+      align-items: center !important;
+      gap: 0.5rem !important;
+    }
+    #detail-modal .modal-code {
+      font-family: 'JetBrains Mono', monospace !important;
+      font-size: 0.82rem !important;
+      color: #60a5fa !important;
+      background: rgba(59, 130, 246, 0.12) !important;
+      border: 1px solid rgba(59, 130, 246, 0.28) !important;
+      padding: 0.2rem 0.55rem !important;
+      border-radius: 6px !important;
+    }
+    #detail-modal .btn-copy-id {
+      background: rgba(255, 255, 255, 0.08) !important;
+      border: 1px solid rgba(255, 255, 255, 0.12) !important;
+      color: #cbd5e1 !important;
+      font-size: 0.72rem !important;
+      font-weight: 600 !important;
+      padding: 0.25rem 0.6rem !important;
+      border-radius: 6px !important;
+      cursor: pointer !important;
+    }
+    #detail-modal .modal-section {
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 0.55rem !important;
+    }
+    #detail-modal .modal-section-title {
+      font-size: 0.88rem !important;
+      font-weight: 700 !important;
+      text-transform: uppercase !important;
+      letter-spacing: 0.06em !important;
+      color: #94a3b8 !important;
+      margin: 0 !important;
+    }
+    #detail-modal .modal-desc {
+      font-size: 0.95rem !important;
+      color: #cbd5e1 !important;
+      line-height: 1.7 !important;
+      margin: 0 !important;
+    }
+    #detail-modal .modal-highlight-list {
+      list-style: none !important;
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 0.55rem !important;
+      padding: 0 !important;
+      margin: 0 !important;
+    }
+    #detail-modal .modal-highlight-list li {
+      display: flex !important;
+      align-items: flex-start !important;
+      gap: 0.65rem !important;
+      font-size: 0.92rem !important;
+      color: #cbd5e1 !important;
+      line-height: 1.55 !important;
+    }
+    #detail-modal .modal-highlight-list .accent-star { color: #3b82f6 !important; font-weight: bold !important; }
+    #detail-modal .modal-highlight-list .check-mark { color: #10b981 !important; font-weight: bold !important; }
+    #detail-modal .modal-footer-btns {
+      display: flex !important;
+      align-items: center !important;
+      gap: 0.75rem !important;
+      flex-wrap: wrap !important;
+      margin-top: 0.75rem !important;
+      padding-top: 1.25rem !important;
+      border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+    }
+    #detail-modal .modal-footer-btns .btn {
+      padding: 0.7rem 1.35rem !important;
+      font-size: 0.92rem !important;
+    }
+    @media (max-width: 640px) {
+      #detail-modal.modal-backdrop { padding: 0.75rem !important; }
+      #detail-modal .modal-body { padding: 1.35rem 1.15rem !important; gap: 1.1rem !important; }
+      #detail-modal .modal-title { font-size: 1.28rem !important; }
+      #detail-modal .modal-media-img { height: 180px !important; }
+      #detail-modal .modal-footer-btns { flex-direction: column !important; width: 100% !important; }
+      #detail-modal .modal-footer-btns .btn { width: 100% !important; justify-content: center !important; }
+    }
+  </style>
 </head>
 <body>
 
+  <!-- Garis Progres Scroll di Bagian Atas -->
+  <div id="scroll-progress" class="scroll-bar"></div>
 
-  <header class="kepala-halaman">
-    <div class="wadah bilah-navigasi">
-      <a href="#" class="logo-portofolio">Portofolio</a>
+  <!-- Efek Latar Belakang Halus -->
+  <div class="ambient-bg" aria-hidden="true">
+    <div class="ambient-glow"></div>
+  </div>
 
+  <!-- ==================== NAVBAR ==================== -->
+  <header class="site-header" id="header">
+    <nav class="nav-container container">
+      <!-- Logo / Nama Brand -->
+      <a href="#home" class="brand">
+        <span class="brand-name">Rahmat</span><span class="brand-dot">.</span>
+      </a>
 
-      <button id="tombol-menu" class="tombol-menu" aria-label="Buka Menu Navigasi">&#9776;</button>
-
-
-      <nav id="navigasi-menu" class="navigasi-menu">
-        <ul class="daftar-navigasi">
-          <li class="butir-navigasi"><a href="#tentang-saya" class="tautan-navigasi">Tentang</a></li>
-          <li class="butir-navigasi"><a href="#daftar-proyek" class="tautan-navigasi">Proyek</a></li>
-          <li class="butir-navigasi"><a href="#kontak-saya" class="tautan-navigasi">Kontak</a></li>
-          <li class="butir-navigasi">
-            <button id="tombol-tema" class="tombol-tema" aria-label="Ganti Tema">🌙</button>
-          </li>
+      <!-- Menu Navigasi Desktop & Mobile -->
+      <div class="nav-menu" id="nav-menu">
+        <ul class="nav-list">
+          <li><a href="#home" class="nav-link active">Home</a></li>
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#skills" class="nav-link">Skills</a></li>
+          <li><a href="#projects" class="nav-link">Projects</a></li>
+          <li><a href="#education" class="nav-link">Education</a></li>
+          <li><a href="#certificates" class="nav-link">Certificates</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
         </ul>
-      </nav>
-    </div>
+      </div>
+
+      <!-- Tombol Menu HP -->
+      <div class="nav-actions">
+        <button id="hamburger-btn" class="hamburger" aria-label="Buka menu navigasi">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
   </header>
 
-  <main class="konten-utama">
-
-    <section id="tentang-saya" class="bagian-halaman bagian-tentang">
-      <div class="wadah baris-tentang">
-        <div class="wadah-foto-profil">
-          <div class="lingkaran-foto">
-
-            <svg class="ilustrasi-profil" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="50" cy="50" r="48" fill="#e2e8f0" stroke="#0284c7" stroke-width="4"/>
-              <circle cx="50" cy="40" r="18" fill="#0284c7"/>
-              <path d="M22 82C22 66.536 34.536 54 50 54C65.464 54 78 66.536 78 82" fill="#0284c7"/>
-            </svg>
+  <main>
+    <!-- ==================== HERO SECTION ==================== -->
+    <section class="section hero-sec" id="home">
+      <div class="container hero-layout">
+        <!-- Kolom Kiri: Teks Pengantar & Tombol -->
+        <div class="hero-left">
+          <div class="badge-status">
+            <span class="status-indicator"></span>
+            <span>Terbuka untuk Magang &amp; Kolaborasi</span>
           </div>
-        </div>
-        <div class="wadah-teks-tentang">
-          <span class="label-subjudul">Rekayasa Perangkat Lunak</span>
-          <h1 class="judul-nama">Rahmat Ramadhani</h1>
-          <p class="deskripsi-diri">
-            Siswa kelas X RPL 1 SMK KRIAN 1 SIDOARJO AHIHIIHHI
+          <h1 class="hero-heading">
+            Rahmat <span class="text-accent">Ramadhani</span>
+          </h1>
+          <p class="hero-role-title">Software Engineering Student </p>
+          <p class="hero-desc">
+            Siswa Rekayasa Perangkat Lunak di SMK Krian 1 Sidoarjo Yang Tertarik pada pengembangan website, AI, dan Internet of Things (IoT).
           </p>
-          <div class="kelompok-tombol">
-            <a href="#daftar-proyek" class="tombol-utama">Lihat Karya</a>
-            <a href="#kontak-saya" class="tombol-sekunder">Hubungi Saya</a>
+          <div class="hero-btns">
+            <a href="#projects" class="btn btn-primary">
+              <span>Lihat Proyek</span>
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+            </a>
+            <a href="#contact" class="btn btn-outline">
+              <span>Hubungi Saya</span>
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            </a>
+            <a href="assets/CV_Rahmat_Ramadhani.pdf" download="CV_Rahmat_Ramadhani.pdf" target="_blank" class="btn btn-ghost" title="Unduh CV PDF Resmi (A4)">
+              <span>Unduh CV (PDF)</span>
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            </a>
+          </div>
+          <!-- Tautan Media Sosial -->
+          <div class="hero-social">
+            <a href="https://github.com/ramadhanirahmat47-rgb" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="GitHub" title="GitHub">
+              <svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.1-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/></svg>
+            </a>
+            <a href="https://linkedin.com/in/rahmat-ramadhani01" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="LinkedIn" title="LinkedIn">
+              <svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+            </a>
+            <a href="https://instagram.com/matrahmat_t/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Instagram" title="Instagram">
+              <svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+            <a href="mailto:ramadhanirahmat47@gmail.com" class="social-icon" aria-label="Email" title="Email">
+              <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Kolom Kanan: Foto Profil -->
+        <div class="hero-right">
+          <div class="profile-card">
+            <div class="avatar-frame">
+              <img src="assets/profile.jpg" alt="Foto Profil Rahmat Ramadhani" class="avatar-img" width="380" height="380" loading="eager">
+            </div>
+            <div class="profile-meta-bar">
+              <div class="profile-meta-info">
+                <strong>Rahmat Ramadhani</strong>
+                <span>SMK Krian 1 Sidoarjo</span>
+              </div>
+              <span class="profile-badge">RPL</span>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="daftar-proyek" class="bagian-halaman bagian-proyek">
-      <div class="wadah">
-        <div class="kepala-bagian">
-          <h2 class="judul-bagian">Karya & Proyek</h2>
-          <p class="subjudul-bagian">Berikut adalah beberapa proyek eksplorasi desain antarmuka dan web yang telah saya buat.</p>
+    <!-- ==================== ABOUT SECTION ==================== -->
+    <section class="section about-sec" id="about">
+      <div class="container">
+        <div class="sec-head">
+          <span class="sec-badge">Tentang Saya</span>
+          <h2 class="sec-title">Dedikasi Pada Rekayasa Perangkat Lunak</h2>
+          <p class="sec-desc">Mengenal lebih dekat latar belakang, filosofi belajar, dan perjalanan saya di dunia software engineering.</p>
+        </div>
+        <div class="about-grid">
+          <!-- Biodata & Filosofi -->
+          <div class="card about-bio">
+            <h3 class="card-head">Profil &amp; Filosofi Rekayasa</h3>
+            <p>Saya adalah siswa jurusan <strong>Rekayasa Perangkat Lunak (RPL)</strong> di <strong>SMK Krian 1 Sidoarjo</strong>. Ketertarikan saya terfokus pada tiga hal utama: membangun aplikasi web, mengeksplorasi potensi AI, dan merancang sistem pintar berbasis IoT.</p>
+            <p>Filosofi saya sederhana: rekayasa perangkat lunak adalah seni menyederhanakan masalah rumit menjadi sistem yang bersih, efisien, dan mudah digunakan.</p>
+            <ul class="check-list">
+              <li><span class="check-mark">✓</span> Terbuka untuk kesempatan Belajar dan proyek kolaborasi.</li>
+            </ul>
+          </div>
+
+          <!-- Info Cepat & Statistik -->
+          <div class="about-side">
+            <div class="info-grid">
+              <div class="info-card"><span class="info-lbl">Nama Lengkap</span><strong>Rahmat Ramadhani</strong></div>
+              <div class="info-card"><span class="info-lbl">Status</span><strong>Siswa Rekayasa Perangkat Lunak</strong></div>
+              <div class="info-card"><span class="info-lbl">Sekolah</span><strong>SMK Krian 1 Sidoarjo</strong></div>
+              <div class="info-card"><span class="info-lbl">Konsentrasi</span><strong>Rekayasa Perangkat Lunak (RPL)</strong></div>
+              <div class="info-card"><span class="info-lbl">Domisili</span><strong>Sidoarjo, Jawa Timur</strong></div>
+              <div class="info-card"><span class="info-lbl">Ketersediaan</span><strong class="text-accent">Terbuka untuk Belajar</strong></div>
+            </div>
+            <div class="stats-grid">
+              <div class="stat-box">
+                <div class="stat-num-row"><span>7</span><span class="stat-plus">+</span></div>
+                <span class="stat-lbl">Proyek Selesai</span>
+              </div>
+              <div class="stat-box">
+                <div class="stat-num-row"><span>10</span><span class="stat-plus">+</span></div>
+                <span class="stat-lbl">Teknologi Dikuasai</span>
+              </div>
+              <div class="stat-box">
+                <div class="stat-num-row"><span>4</span><span class="stat-plus">+</span></div>
+                <span class="stat-lbl">Sertifikat Resmi</span>
+              </div>
+              <div class="stat-box">
+                <div class="stat-num-row"><span>1</span><span class="stat-plus">+</span></div>
+                <span class="stat-lbl">Tahun Belajar</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SKILLS SECTION ==================== -->
+    <section class="section skills-sec" id="skills">
+      <div class="container">
+        <div class="sec-head">
+          <span class="sec-badge">Keahlian &amp; Tools</span>
+          <h2 class="sec-title">Tech Stack &amp; Kompetensi Teknis</h2>
+          <p class="sec-desc">Kumpulan bahasa pemrograman, alat kerja, dan standar pengembangan yang saya gunakan.</p>
+        </div>
+        
+        <div class="skills-grid">
+          <!-- Kategori 1: Frontend -->
+          <div class="card skill-card">
+            <div class="skill-top">
+              <span class="skill-ico">🎨</span>
+              <div>
+                <h3>Frontend Development</h3>
+                <small>4 kompetensi</small>
+              </div>
+            </div>
+            <div class="skill-rows">
+              <div class="skill-row">
+                <div class="skill-info"><span>HTML</span><span class="skill-tier">30%</span></div>
+                <div class="bar-bg"><div class="bar-val" style="width: 30%;"></div></div>
+              </div>
+              <div class="skill-row">
+                <div class="skill-info"><span>CSS</span><span class="skill-tier">20%</span></div>
+                <div class="bar-bg"><div class="bar-val" style="width: 20%;"></div></div>
+              </div>
+              <div class="skill-row">
+                <div class="skill-info"><span>JavaScript</span><span class="skill-tier">20%</span></div>
+                <div class="bar-bg"><div class="bar-val" style="width: 20%;"></div></div>
+              </div>
+              <div class="skill-row">
+                <div class="skill-info"><span>Responsive Web &amp; UI/UX</span><span class="skill-tier">10</span></div>
+                <div class="bar-bg"><div class="bar-val" style="width: 10%;"></div></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Kategori 2: Programming -->
+          <div class="card skill-card">
+            <div class="skill-top">
+              <span class="skill-ico">💻</span>
+              <div>
+                <h3>Programming &amp; Logic</h3>
+                <small>3 kompetensi</small>
+              </div>
+            </div>
+            <div class="skill-rows">
+              <div class="skill-row">
+                <div class="skill-info"><span>Python</span><span class="skill-tier">40%</span></div>
+                <div class="bar-bg"><div class="bar-val" style="width: 40%;"></div></div>
+              </div>
+              <div class="skill-row">
+                <div class="skill-info"><span>Java (OOP)</span><span class="skill-tier">30%</span></div>
+                <div class="bar-bg"><div class="bar-val" style="width: 30%;"></div></div>
+              </div>
+              <div class="skill-row">
+                <div class="skill-info"><span>C++</span><span class="skill-tier">10%</span></div>
+                <div class="bar-bg"><div class="bar-val" style="width: 10%;"></div></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Kategori 3: Tools & Workflow -->
+          <div class="card skill-card">
+            <div class="skill-top">
+              <span class="skill-ico">⚙️</span>
+              <div>
+                <h3>Tools</h3>
+                <small>3 kompetensi</small>
+              </div>
+            </div>
+            <div class="skill-rows">
+              <div class="skill-row">
+                <div class="skill-info"><span>Git &amp; GitHub</span><span class="skill-tier">30%</span></div>
+                <div class="bar-bg"><div class="bar-val" style="width: 30%;"></div></div>
+              </div>
+              <div class="skill-row">
+                <div class="skill-info"><span>VS Code &amp; DevTools</span><span class="skill-tier">40%</span></div>
+                <div class="bar-bg"><div class="bar-val" style="width: 40%;"></div></div>
+              </div>
+              <div class="skill-row">
+                <div class="skill-info"><span>Figma UI Prototyping</span><span class="skill-tier">40%</span></div>
+                <div class="bar-bg"><div class="bar-val" style="width: 40%;"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== PROJECTS SECTION ==================== -->
+    <section class="section projects-sec" id="projects">
+      <div class="container">
+        <div class="sec-head">
+          <span class="sec-badge">Karya &amp; Portofolio</span>
+          <h2 class="sec-title">Proyek Pilihan</h2>
+          <p class="sec-desc">Koleksi karya dari perancangan antarmuka pengguna, eksplorasi teknologi terapan, hingga implementasi perangkat lunak.</p>
         </div>
 
-        <div class="wadah-kartu-proyek">
-          <article class="kartu-proyek" id="proyek-satu">
-            <div class="ikon-proyek">🎨</div>
-            <div class="badan-kartu">
-              <span class="kategori-proyek">..</span>
-              <h3 class="judul-proyek">...</h3>
-              <p class="deskripsi-proyek">
-            
-              </p>
-              <div class="label-teknologi">
-                <span class="butir-label"></span>
-                <span class="butir-label"></span>
+        <!-- Tombol Filter Kategori Sederhana -->
+        <div class="projects-bar">
+          <div class="filter-tabs" id="project-filter-tabs">
+            <button class="filter-tab active" data-filter="all">Semua</button>
+            <button class="filter-tab" data-filter="uiux">UI/UX</button>
+            <button class="filter-tab" data-filter="farm">Farm</button>
+            <button class="filter-tab" data-filter="python">Python</button>
+            <button class="filter-tab" data-filter="iot">IoT</button>
+            <button class="filter-tab" data-filter="web">Web</button>
+            <button class="filter-tab" data-filter="ai">AI</button>
+          </div>
+        </div>
+
+        <!-- Grid Daftar Proyek -->
+        <div class="projects-grid" id="projects-grid">
+          <!-- Proyek 1 -->
+          <article class="card project-item" data-category="uiux" data-modal-id="project-1" tabindex="0" role="button" aria-label="Buka popup detail proyek Mobile App Design">
+            <div class="thumb-box">
+              <img src="assets/projects/project-1.jpg" alt="Mobile App Design" class="item-thumb" loading="lazy">
+              <span class="cat-badge">UI/UX</span>
+            </div>
+            <div class="item-body">
+              <h3 class="item-title">Mobile App Design</h3>
+              <p class="item-desc">Projek Hasil Dari Lomba 17 agustus Web Design</p>
+              <div class="item-tags">
+                <span class="chip-tag">Figma</span>
+                <span class="chip-tag">UI/UX Design</span>
+              </div>
+              <div class="item-btns">
+                <button type="button" class="btn btn-primary btn-sm btn-open-modal" data-modal-id="project-1">
+                  <span>Lihat Detail</span>
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6"></path><path d="M10 14L21 3"></path><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path></svg>
+                </button>
+                <a href="https://embed.figma.com/proto/Skd7WYRCNgcux2502m3PG9/RAHMAT-RAMADHANI-X-RPL-1?node-id=1-57&starting-point-node-id=1%3A3&embed-host=share" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" onclick="event.stopPropagation()">
+                  <span>Demo Figma ↗</span>
+                </a>
               </div>
             </div>
           </article>
 
-          <article class="kartu-proyek" id="proyek-dua">
-            <div class="ikon-proyek">💻</div>
-            <div class="badan-kartu">
-              <span class="kategori-proyek"></span>
-              <h3 class="judul-proyek"></h3>
-              <p class="deskripsi-proyek">
-                
-              </p>
-              <div class="label-teknologi">
-                <span class="butir-label"></span>
-                <span class="butir-label"></span>
+          <!-- Proyek 2 -->
+          <article class="card project-item" data-category="farm" data-modal-id="project-2" tabindex="0" role="button" aria-label="Buka popup detail proyek Menananam Kangkung">
+            <div class="thumb-box">
+              <img src="assets/projects/project-2.jpg" alt="Menananam Kangkung" class="item-thumb" loading="lazy">
+              <span class="cat-badge">Farm</span>
+            </div>
+            <div class="item-body">
+              <h3 class="item-title">Menananam Kangkung: Tugas Ketahanan Pangan Mapel PPLG</h3>
+              <p class="item-desc">Proyek ketahanan pangan mata pelajaran Pengembangan Perangkat Lunak dan Gim (PPLG) berupa kegiatan budidaya tanaman kangkung, yang menggabungkan proses pembelajaran agrikultur praktis untuk mendukung kemandirian pangan.</p>
+              <div class="item-tags">
+                <span class="chip-tag">PPLG</span>
+                <span class="chip-tag">Farm</span>
+                <span class="chip-tag">Agrikultur Praktis</span>
+              </div>
+              <div class="item-btns">
+                <button type="button" class="btn btn-primary btn-sm btn-open-modal" data-modal-id="project-2">
+                  <span>Lihat Detail</span>
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6"></path><path d="M10 14L21 3"></path><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path></svg>
+                </button>
               </div>
             </div>
           </article>
 
-          <article class="kartu-proyek" id="proyek-tiga">
-            <div class="ikon-proyek">⚙️</div>
-            <div class="badan-kartu">
-              <span class="kategori-proyek"></span>
-              <h3 class="judul-proyek"></h3>
-              <p class="deskripsi-proyek">
-                
-              </p>
-              <div class="label-teknologi">
-                <span class="butir-label"></span>
-                <span class="butir-label"></span>
+          <!-- Proyek 3 -->
+          <article class="card project-item" data-category="farm" data-modal-id="project-3" tabindex="0" role="button" aria-label="Buka popup detail proyek Menanam 10 Jenis TOGA">
+            <div class="thumb-box">
+              <img src="assets/projects/project-3.jpg" alt="Menanam 10 Jenis TOGA" class="item-thumb" loading="lazy">
+              <span class="cat-badge">Farm</span>
+            </div>
+            <div class="item-body">
+              <h3 class="item-title">Menanam 10 Jenis TOGA: Projek Kesehatan Mandiri dan Lingkungan</h3>
+              <p class="item-desc">Proyek ketahanan pangan dan pemanfaatan lahan sekolah melalui budidaya 10 jenis Tanaman Obat Keluarga (TOGA) pilihan, yang memadukan kegiatan agrikultur praktis dengan penerapan teknologi digital untuk mendukung kesehatan mandiri dan edukasi lingkungan.</p>
+              <div class="item-tags">
+                <span class="chip-tag">Farm</span>
+                <span class="chip-tag">TOGA</span>
+                <span class="chip-tag">Kesehatan Mandiri</span>
+              </div>
+              <div class="item-btns">
+                <button type="button" class="btn btn-primary btn-sm btn-open-modal" data-modal-id="project-3">
+                  <span>Lihat Detail</span>
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6"></path><path d="M10 14L21 3"></path><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path></svg>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Proyek 4 -->
+          <article class="card project-item" data-category="python" data-modal-id="project-4" tabindex="0" role="button" aria-label="Buka popup detail proyek Extrakurikuler AI Study Club">
+            <div class="thumb-box">
+              <img src="assets/projects/project-4.jpg" alt="Extrakurikuler AI Study Club" class="item-thumb" loading="lazy">
+              <span class="cat-badge">Python</span>
+            </div>
+            <div class="item-body">
+              <h3 class="item-title">Extrakurikuler : AI Study Club</h3>
+              <p class="item-desc">NoteBook Extrakurikuler AI Study Club</p>
+              <div class="item-tags">
+                <span class="chip-tag">Python</span>
+                <span class="chip-tag">AI Study Club</span>
+                <span class="chip-tag">Notebook</span>
+              </div>
+              <div class="item-btns">
+                <button type="button" class="btn btn-primary btn-sm btn-open-modal" data-modal-id="project-4">
+                  <span>Lihat Detail</span>
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6"></path><path d="M10 14L21 3"></path><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path></svg>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Proyek 5 -->
+          <article class="card project-item" data-category="iot" data-modal-id="project-5" tabindex="0" role="button" aria-label="Buka popup detail proyek Extrakurikuler Skarisa Robotic">
+            <div class="thumb-box">
+              <img src="assets/projects/project-5.jpg" alt="Extrakurikuler Skarisa Robotic" class="item-thumb" loading="lazy">
+              <span class="cat-badge">IoT</span>
+            </div>
+            <div class="item-body">
+              <h3 class="item-title">Extrakurikuler : Skarisa Robotic</h3>
+              <p class="item-desc">Project Extrakurikuler Skarisa Robotic</p>
+              <div class="item-tags">
+                <span class="chip-tag">Arduino</span>
+                <span class="chip-tag">ESP32</span>
+                <span class="chip-tag">Robotics</span>
+              </div>
+              <div class="item-btns">
+                <button type="button" class="btn btn-primary btn-sm btn-open-modal" data-modal-id="project-5">
+                  <span>Lihat Detail</span>
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6"></path><path d="M10 14L21 3"></path><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path></svg>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Proyek 6 -->
+          <article class="card project-item" data-category="web" data-modal-id="project-6" tabindex="0" role="button" aria-label="Buka popup detail proyek Blogger TJK">
+            <div class="thumb-box">
+              <img src="assets/projects/project-6.jpg" alt="Blogger TJK Rahmat Ramadhani" class="item-thumb" loading="lazy">
+              <span class="cat-badge">Web</span>
+            </div>
+            <div class="item-body">
+              <h3 class="item-title">Blogger : TJK Rahmat Ramadhani</h3>
+              <p class="item-desc">Web Blogger</p>
+              <div class="item-tags">
+                <span class="chip-tag">TJK</span>
+                <span class="chip-tag">Web Blogger</span>
+              </div>
+              <div class="item-btns">
+                <button type="button" class="btn btn-primary btn-sm btn-open-modal" data-modal-id="project-6">
+                  <span>Lihat Detail</span>
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6"></path><path d="M10 14L21 3"></path><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path></svg>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Proyek 7 -->
+          <article class="card project-item" data-category="ai" data-modal-id="project-7" tabindex="0" role="button" aria-label="Buka popup detail proyek AI Model Rock Paper Scissors">
+            <div class="thumb-box">
+              <img src="assets/projects/project-7.jpg" alt="AI Model Rock Paper Scissors" class="item-thumb" loading="lazy">
+              <span class="cat-badge">AI</span>
+            </div>
+            <div class="item-body">
+              <h3 class="item-title">AI Model Rock Paper Scissors : With TeachableMachine</h3>
+              <p class="item-desc">Game Batu Gunting Kertas berbasis AI yang menggunakan kamera untuk mengenali gesture tangan secara real-time. Project ini dibangun dengan Teachable Machine, TensorFlow.js, HTML, CSS, dan JavaScript serta dapat dijalankan langsung melalui browser.</p>
+              <div class="item-tags">
+                <span class="chip-tag">TensorFlow.js</span>
+                <span class="chip-tag">Teachable Machine</span>
+                <span class="chip-tag">AI</span>
+              </div>
+              <div class="item-btns">
+                <button type="button" class="btn btn-primary btn-sm btn-open-modal" data-modal-id="project-7">
+                  <span>Lihat Detail</span>
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6"></path><path d="M10 14L21 3"></path><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path></svg>
+                </button>
               </div>
             </div>
           </article>
@@ -114,30 +712,289 @@
       </div>
     </section>
 
+    <!-- ==================== EDUCATION SECTION ==================== -->
+    <section class="section edu-sec" id="education">
+      <div class="container">
+        <div class="sec-head">
+          <span class="sec-badge">Akademik</span>
+          <h2 class="sec-title">Pendidikan &amp; Kualifikasi</h2>
+          <p class="sec-desc">Latar belakang pendidikan formal dan kurikulum kejuruan berbasis industri teknologi.</p>
+        </div>
+        <div class="edu-wrap">
+          <div class="card edu-box">
+            <div class="edu-header">
+              <div class="edu-ico">🎓</div>
+              <div>
+                <span class="edu-yr">2026 — Sekarang</span>
+                <h3 class="edu-title">SMK Krian 1 Sidoarjo</h3>
+                <h4 class="edu-dept">Rekayasa Perangkat Lunak (Software Engineering)</h4>
+              </div>
+            </div>
+            <p class="edu-desc">
+              Program kejuruan terakreditasi dengan kurikulum berbasis industri teknologi. Mempelajari rekayasa perangkat lunak modern, perancangan antarmuka pengguna, logika algoritma, dan manajemen basis data.
+            </p>
+            <div class="edu-courses">
+              <h5>Mata Pelajaran &amp; Kompetensi Utama:</h5>
+              <div class="course-chips">
+                <span>Pemrograman Terstruktur (PT)</span>
+                <span>Pemrograman Berorientasi Objek (PBO)</span>
+                <span>Pengembangan Perangkat Lunak dan Game (PPLG)</span>
+                <span>Teknik Jaringan Komputer (TJK)</span>
+                <span>Kecakapan Kerja Dasar (KKD)</span>
+                <span>Informatika</span>
+              </div>
+            </div>
+            <div class="edu-achieve">
+              <h5>Pencapaian &amp; Sorotan:</h5>
+              <ul class="check-list">
+                <li><span class="accent-star">✦</span> Juara 1 Kompetisi Antar Kelas Web Design (2026)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== CERTIFICATES SECTION ==================== -->
+    <section class="section cert-sec" id="certificates">
+      <div class="container">
+        <div class="sec-head">
+          <span class="sec-badge">Kredensial</span>
+          <h2 class="sec-title">Sertifikasi &amp; Pencapaian</h2>
+          <p class="sec-desc">Sertifikasi kompetensi resmi terverifikasi dari industri teknologi (Dicoding Academy &amp; mitra).</p>
+        </div>
+        <div class="cert-grid">
+          <!-- Sertifikat 1 -->
+          <div class="card cert-item" data-modal-id="cert-1" tabindex="0" role="button" aria-label="Buka popup detail sertifikat Belajar Dasar AI">
+            <div class="cert-thumb">
+              <img src="assets/certificates/cert-1.jfif" alt="Sertifikat Belajar Dasar AI" class="cert-img" loading="lazy">
+            </div>
+            <div class="cert-head">
+              <span class="cert-badge-yr">2026</span>
+              <span class="cert-badge-iss">Dicoding Academy</span>
+            </div>
+            <h3 class="cert-h3">Belajar Dasar AI</h3>
+            <p class="cert-text">Mempelajari fondasi kecerdasan buatan, machine learning, serta implementasi etis teknologi AI.</p>
+            <div class="cert-footer-row">
+              <span class="cert-action">ID: NVP7WY21RZR0</span>
+              <span class="cert-btn-hint">
+                <span>Detail</span>
+                <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              </span>
+            </div>
+          </div>
+
+          <!-- Sertifikat 2 -->
+          <div class="card cert-item" data-modal-id="cert-2" tabindex="0" role="button" aria-label="Buka popup detail sertifikat Pemrograman Python">
+            <div class="cert-thumb">
+              <img src="assets/certificates/cert-2.jfif" alt="Sertifikat Pemrograman Python" class="cert-img" loading="lazy">
+            </div>
+            <div class="cert-head">
+              <span class="cert-badge-yr">2026</span>
+              <span class="cert-badge-iss">Dicoding Academy</span>
+            </div>
+            <h3 class="cert-h3">Pemrograman Dengan Python</h3>
+            <p class="cert-text">Penguasaan dasar bahasa pemrograman Python berstandar industri menggunakan tools modern.</p>
+            <div class="cert-footer-row">
+              <span class="cert-action">ID: 07Z6QR412ZQR</span>
+              <span class="cert-btn-hint">
+                <span>Detail</span>
+                <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              </span>
+            </div>
+          </div>
+
+          <!-- Sertifikat 3 -->
+          <div class="card cert-item" data-modal-id="cert-3" tabindex="0" role="button" aria-label="Buka popup detail sertifikat Introduction To Financial Literacy">
+            <div class="cert-thumb">
+              <img src="assets/certificates/cert-3.jfif" alt="Sertifikat Literasi Finansial" class="cert-img" loading="lazy">
+            </div>
+            <div class="cert-head">
+              <span class="cert-badge-yr">2026</span>
+              <span class="cert-badge-iss">Dicoding Academy</span>
+            </div>
+            <h3 class="cert-h3">Introduction To Financial Literacy</h3>
+            <p class="cert-text">Program Coding Camp bersama DBS Foundation untuk memahami literasi finansial dan perencanaan strategis.</p>
+            <div class="cert-footer-row">
+              <span class="cert-action">ID: ERZR79RWMZYV</span>
+              <span class="cert-btn-hint">
+                <span>Detail</span>
+                <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              </span>
+            </div>
+          </div>
+
+          <!-- Sertifikat 4 -->
+          <div class="card cert-item" data-modal-id="cert-4" tabindex="0" role="button" aria-label="Buka popup detail sertifikat Belajar Strategi Pengembangan Diri">
+            <div class="cert-thumb">
+              <img src="assets/certificates/cert-4.jfif" alt="Sertifikat Strategi Pengembangan Diri" class="cert-img" loading="lazy">
+            </div>
+            <div class="cert-head">
+              <span class="cert-badge-yr">2026</span>
+              <span class="cert-badge-iss">Dicoding Academy</span>
+            </div>
+            <h3 class="cert-h3">Belajar Strategi Pengembangan Diri</h3>
+            <p class="cert-text">Pengembangan pola pikir bertumbuh (growth mindset), manajemen waktu, dan komunikasi profesional.</p>
+            <div class="cert-footer-row">
+              <span class="cert-action">ID: JLX1KL1KJP72</span>
+              <span class="cert-btn-hint">
+                <span>Detail</span>
+                <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================  CONTACT ==================== -->
+    <section class="section contact-sec" id="contact">
+      <div class="container">
+        <div class="sec-head">
+          <span class="sec-badge">Hubungi Saya</span>
+          <h2 class="sec-title">Mari Terhubung &amp; Berkolaborasi</h2>
+          <p class="sec-desc">Punya tawaran proyek kolaborasi, atau ingin berdiskusi? Jangan ragu untuk menghubungi saya.</p>
+        </div>
+        <div class="contact-grid">
+          <!-- Info Kontak -->
+          <div class="card contact-card">
+            <h3 class="card-head">Informasi Kontak</h3>
+            <p class="contact-lead">Saya selalu terbuka untuk peluang magang industri, proyek open-source, dan pengembangan website modern.</p>
+            <div class="channel-row">
+              <div class="channel-ico">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+              </div>
+              <div class="channel-body">
+                <small>Alamat Email</small>
+                <a href="mailto:ramadhanirahmat47@gmail.com" class="channel-val" id="contact-email-text">ramadhanirahmat47@gmail.com</a>
+              </div>
+              <button id="copy-email-btn" class="btn btn-outline btn-sm" title="Salin email" aria-label="Salin email">
+                <span class="copy-lbl">Salin</span>
+              </button>
+            </div>
+            <div class="channel-row">
+              <div class="channel-ico">📍</div>
+              <div class="channel-body">
+                <small>Lokasi</small>
+                <span class="channel-val">Sidoarjo, Jawa Timur, Indonesia</span>
+              </div>
+            </div>
+            <div class="channel-row">
+              <div class="channel-ico">⏱️</div>
+              <div class="channel-body">
+                <small>Waktu Respon</small>
+                <span class="channel-val text-accent">&lt; 24 Jam </span>
+              </div>
+            </div>
+            <div class="contact-social-wrap">
+              <span class="contact-social-lbl">Profil Media Sosial:</span>
+              <div class="social-row">
+                <a href="https://github.com/ramadhanirahmat47-rgb" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">GitHub ↗</a>
+                <a href="https://linkedin.com/in/rahmat-ramadhani01" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">LinkedIn ↗</a>
+                <a href="https://instagram.com/matrahmat_t/" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">Instagram ↗</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Formulir Kirim Pesan -->
+          <div class="card contact-form-box">
+            <h3 class="card-head">Kirim Pesan Langsung</h3>
+            <p class="contact-lead">Isi formulir di bawah ini untuk mengirim pesan langsung melalui email client Anda.</p>
+            <form id="contact-form">
+              <div class="field-item">
+                <label for="contact-name">Nama Lengkap <span class="req">*</span></label>
+                <input type="text" id="contact-name" name="name" placeholder="cth. Rahmat Ramadhani" required>
+              </div>
+              <div class="field-item">
+                <label for="contact-email">Alamat Email <span class="req">*</span></label>
+                <input type="email" id="contact-email" name="email" placeholder="cth. nama@email.com" required>
+              </div>
+              <div class="field-item">
+                <label for="contact-subject">Subjek Pesan <span class="req">*</span></label>
+                <input type="text" id="contact-subject" name="subject" placeholder="cth. Tawaran Magang / Diskusi Proyek" required>
+              </div>
+              <div class="field-item">
+                <label for="contact-message">Pesan Anda <span class="req">*</span></label>
+                <textarea id="contact-message" name="message" rows="4" placeholder="Tuliskan pesan Anda di sini..." required></textarea>
+              </div>
+              <button type="submit" id="contact-submit-btn" class="btn btn-primary btn-block">
+                <span>Kirim Pesan (Mailto)</span>
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+              </button>
+              <div id="form-feedback" class="feedback-alert hidden"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
-  <footer id="kontak-saya" class="kaki-halaman">
-    <div class="wadah konten-kaki">
-      <div class="info-kaki">
-        <h3 class="judul-kaki">Hubungi Saya</h3>
-        <p class="deskripsi-kaki">Tertarik untuk berkolaborasi atau memiliki pertanyaan seputar proyek?</p>
-        <p class="teks-kontak">Email: <a href="mailto:ramadhanirahmat47@gmail.com" class="tautan-kontak">ramadhanirahmat47@gmail.com</a></p>
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#home" class="brand">
+            <span class="brand-name">Rahmat</span><span class="brand-dot">.</span>
+          </a>
+          <p class="footer-motto">Terus belajar, terus berkarya, dan menciptakan solusi dari setiap tantangan.</p>
+        </div>
+        <div class="footer-links-col">
+          <h4>Navigasi</h4>
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#certificates">Certificates</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="assets/CV_Rahmat_Ramadhani.pdf" target="_blank" download="CV_Rahmat_Ramadhani.pdf">Unduh CV (PDF) ↗</a></li>
+            <li><a href="cv_template.html" target="_blank">Lihat CV Web ↗</a></li>
+          </ul>
+        </div>
+        <div class="footer-links-col">
+          <h4>Media Sosial</h4>
+          <ul>
+            <li><a href="https://github.com/ramadhanirahmat47-rgb" target="_blank" rel="noopener noreferrer">GitHub ↗</a></li>
+            <li><a href="https://linkedin.com/in/rahmat-ramadhani01" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></li>
+            <li><a href="https://instagram.com/matrahmat_t/" target="_blank" rel="noopener noreferrer">Instagram ↗</a></li>
+          </ul>
+        </div>
       </div>
-
-      <div class="wadah-tautan-sosial">
-        <a href="#" class="tautan-sosial" aria-label="Profil GitHub">GitHub</a>
-        <a href="#" class="tautan-sosial" aria-label="Profil LinkedIn">LinkedIn</a>
-        <a href="#" class="tautan-sosial" aria-label="Profil Instagram">Instagram</a>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Rahmat Ramadhani.</p>
+        <span class="footer-subtext">SMK Krian 1 Sidoarjo — Rekayasa Perangkat Lunak</span>
       </div>
-
-      <div class="garis-pemisah"></div>
-      <p class="hak-cipta">&copy; 2026 Rahmat Ramadhani - RPL SMK Krian 1 Sidoarjo.</p>
     </div>
   </footer>
 
-  
-  <button id="tombol-ke-atas" class="tombol-ke-atas" aria-label="Kembali ke atas">&#8593;</button>
+  <!-- Tombol Kembali ke Atas -->
+  <button id="back-to-top" class="to-top-btn" aria-label="Kembali ke atas" title="Kembali ke atas">
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"></polyline></svg>
+  </button>
 
-  <script src="script.js"></script>
+  <!-- Kotak Notifikasi Toast -->
+  <div id="toast-container" class="toast-box"></div>
+
+  <!-- ==================== POPUP DETAIL==================== -->
+  <div id="detail-modal" class="modal-backdrop" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-dialog">
+      <div class="modal-card">
+        <!-- Tombol Tutup X -->
+        <button id="modal-close-btn" class="modal-close-btn" type="button" aria-label="Tutup popup detail" title="Tutup (Esc)">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+        <div id="modal-body" class="modal-body">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Script JavaScript Sederhana -->
+  <script src="script.js?v=2026"></script>
 </body>
 </html>
