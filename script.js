@@ -1,28 +1,11 @@
-/**
- * ============================================================================
- * JAVASCRIPT PORTOFOLIO — RAHMAT RAMADHANI (SMK KRIAN 1 SIDOARJO)
- * ============================================================================
- * Kode ini dibuat sesederhana mungkin (Vanilla JS) agar mudah dipelajari
- * dan mudah dijelaskan kepada guru atau penguji.
- *
- * Daftar Fungsi:
- * 1. Menu Navigasi Mobile (Hamburger Menu)
- * 2. Garis Indikator Scroll & Header Efek
- * 3. Filter Kategori Proyek (Semua, UI/UX, Farm, Python, IoT, Web, AI)
- * 4. Modal Popup Detail Proyek & Sertifikat (Deskripsi Rinci & Link)
- * 5. Salin Alamat Email ke Clipboard
- * 6. Formulir Kontak (Mailto)
- * 7. Tombol Kembali ke Atas (Back to Top) & Notifikasi Toast
- * ============================================================================
- */
+
 
 'use strict';
 
 document.addEventListener('DOMContentLoaded', () => {
 
   /* --------------------------------------------------------------------------
-     1. MENU NAVIGASI MOBILE (HAMBURGER MENU)
-     Membuka dan menutup menu ketika layar HP ditekan.
+     1. MENU NAVIGASI 
      -------------------------------------------------------------------------- */
   const hamburgerBtn = document.getElementById('hamburger-btn');
   const navMenu = document.getElementById('nav-menu');
@@ -131,7 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { label: 'Acara / Event', value: 'Lomba 17 Agustus Web Design' },
         { label: 'Tools Utama', value: 'Figma' }
       ],
-      description: 'Projek Hasil Dari Lomba 17 agustus Web Design. Merupakan perancangan prototipe aplikasi mobile responsif berbasis User-Centered Design (UCD) yang menitikberatkan pada kemudahan interaksi pengguna, arsitektur informasi yang intuitif, serta keselarasan estetika visual modern.',
+      description: 'Proyek hasil dari lomba Web Design 17 Agustus. Merupakan perancangan prototipe aplikasi mobile responsif berbasis User-Centered Design (UCD) yang menitikberatkan pada kemudahan interaksi pengguna, arsitektur informasi yang intuitif, serta keselarasan estetika visual modern.',
       highlightsTitle: 'Fitur & Sorotan Proyek',
       highlights: [
         'Karya kompetisi Web & App Design bertema kemerdekaan 17 Agustus.',
@@ -157,7 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
       type: 'project',
       badge: 'Farm',
       subBadge: 'Ketahanan Pangan PPLG',
-      title: 'Menananam Kangkung: Tugas Ketahanan Pangan Mapel PPLG',
+      title: 'Menanam Kangkung: Tugas Ketahanan Pangan Mapel PPLG',
       img: 'assets/projects/project-2.jpg',
       info: [
         { label: 'Mata Pelajaran', value: 'PPLG SMK Krian 1 Sidoarjo' },
@@ -232,7 +215,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { label: 'Bahasa', value: 'Python' },
         { label: 'Format', value: 'Jupyter Notebook' }
       ],
-      description: 'NoteBook Extrakurikuler AI Study Club yang memuat eksplorasi kode pemrograman Python, manipulasi data array, serta pengenalan algoritma pembelajaran mesin (Machine Learning). Proyek ini disusun sebagai dokumentasi belajar terstruktur dalam mendalami kecerdasan buatan.',
+      description: 'Notebook Extrakurikuler AI Study Club yang memuat eksplorasi kode pemrograman Python, manipulasi data array, serta pengenalan algoritma pembelajaran mesin (Machine Learning). Proyek ini disusun sebagai dokumentasi belajar terstruktur dalam mendalami kecerdasan buatan.',
       highlightsTitle: 'Materi & Eksplorasi Notebook',
       highlights: [
         'Eksplorasi sintaksis dan struktur data Python untuk pemrosesan dataset.',
@@ -520,8 +503,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }).join('');
 
     const highlightsHtml = (data.highlights || []).map(hl => {
-      const icon = data.type === 'project' 
-        ? '<span class="accent-star">✦</span>' 
+      const icon = data.type === 'project'
+        ? '<span class="accent-star">✦</span>'
         : '<span class="check-mark">✓</span>';
       return `<li>${icon}<span>${hl}</span></li>`;
     }).join('');
@@ -821,6 +804,54 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
       toast.remove();
     }, 2500);
+  }
+
+
+  /* --------------------------------------------------------------------------
+     8. MENU AKTIF MENGIKUTI POSISI SCROLL (SCROLL-SPY)
+     Menandai tautan menu sesuai bagian halaman yang sedang dilihat.
+     -------------------------------------------------------------------------- */
+  const pageSections = document.querySelectorAll('main section[id]');
+
+  if (pageSections.length && 'IntersectionObserver' in window) {
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const currentId = entry.target.id;
+          navLinks.forEach(link => {
+            link.classList.toggle('active', link.getAttribute('href') === '#' + currentId);
+          });
+        }
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+
+    pageSections.forEach(section => sectionObserver.observe(section));
+  }
+
+  /* --------------------------------------------------------------------------
+     9. ANIMASI BAR LEVEL KEAHLIAN
+     Bar terisi perlahan saat bagian Keahlian muncul di layar.
+     -------------------------------------------------------------------------- */
+  const skillBars = document.querySelectorAll('.bar-val');
+
+  if (skillBars.length && 'IntersectionObserver' in window) {
+    // Simpan lebar tujuan, lalu kosongkan bar sebelum animasi dimulai
+    skillBars.forEach(bar => {
+      bar.dataset.target = bar.style.width;
+      bar.style.width = '0%';
+    });
+
+    const barObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const bar = entry.target.querySelector('.bar-val');
+          bar.style.width = bar.dataset.target;
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.4 });
+
+    skillBars.forEach(bar => barObserver.observe(bar.parentElement));
   }
 
 });

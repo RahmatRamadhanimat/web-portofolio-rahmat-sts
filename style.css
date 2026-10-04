@@ -697,6 +697,7 @@ ul {
   height: 100%;
   background: var(--accent);
   border-radius: 9999px;
+  transition: width 1s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* --------------------------------------------------------------------------
@@ -1753,3 +1754,43 @@ ul {
   }
 }
 
+
+/* --------------------------------------------------------------------------
+   15. MEDIA QUERY MOBILE (max-width: 600px)
+   Sesuai ketentuan tugas: minimal satu media query untuk tampilan mobile.
+   Merapatkan jarak dan ukuran elemen agar nyaman dibaca di layar HP.
+   -------------------------------------------------------------------------- */
+@media (max-width: 600px) {
+  .container {
+    padding: 0 1.1rem;
+  }
+  .section {
+    padding: 3.25rem 0;
+  }
+  .sec-head {
+    margin-bottom: 2.25rem;
+  }
+  .sec-desc {
+    font-size: 0.92rem;
+  }
+  .projects-bar {
+    margin-bottom: 1.75rem;
+  }
+  .filter-tabs {
+    justify-content: center;
+    gap: 0.4rem;
+  }
+  .filter-tab {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.85rem;
+  }
+  .projects-grid, .skills-grid, .cert-grid {
+    gap: 1.25rem;
+  }
+  .item-body {
+    padding: 1.2rem;
+  }
+  .item-btns {
+    flex-wrap: wrap;
+  }
+}
