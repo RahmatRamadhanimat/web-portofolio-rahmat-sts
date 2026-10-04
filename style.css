@@ -1407,7 +1407,7 @@ ul {
   backdrop-filter: blur(14px) !important;
   -webkit-backdrop-filter: blur(14px) !important;
   z-index: 99999 !important;
-  display: flex !important;
+  display: none !important;
   align-items: center !important;
   justify-content: center !important;
   padding: 1.25rem !important;
@@ -1420,6 +1420,7 @@ ul {
 }
 
 .modal-backdrop.active {
+  display: flex !important;
   opacity: 1 !important;
   visibility: visible !important;
   pointer-events: auto !important;
