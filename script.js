@@ -13,6 +13,8 @@
  * 5. Salin Alamat Email ke Clipboard
  * 6. Formulir Kontak (Mailto)
  * 7. Tombol Kembali ke Atas (Back to Top) & Notifikasi Toast
+ * 8. Menu Aktif Mengikuti Posisi Scroll (Scroll-Spy)
+ * 9. Animasi Bar Level Keahlian
  * ============================================================================
  */
 
@@ -131,7 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { label: 'Acara / Event', value: 'Lomba 17 Agustus Web Design' },
         { label: 'Tools Utama', value: 'Figma' }
       ],
-      description: 'Projek Hasil Dari Lomba 17 agustus Web Design. Merupakan perancangan prototipe aplikasi mobile responsif berbasis User-Centered Design (UCD) yang menitikberatkan pada kemudahan interaksi pengguna, arsitektur informasi yang intuitif, serta keselarasan estetika visual modern.',
+      description: 'Proyek hasil dari lomba Web Design 17 Agustus. Merupakan perancangan prototipe aplikasi mobile responsif berbasis User-Centered Design (UCD) yang menitikberatkan pada kemudahan interaksi pengguna, arsitektur informasi yang intuitif, serta keselarasan estetika visual modern.',
       highlightsTitle: 'Fitur & Sorotan Proyek',
       highlights: [
         'Karya kompetisi Web & App Design bertema kemerdekaan 17 Agustus.',
@@ -157,7 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
       type: 'project',
       badge: 'Farm',
       subBadge: 'Ketahanan Pangan PPLG',
-      title: 'Menananam Kangkung: Tugas Ketahanan Pangan Mapel PPLG',
+      title: 'Menanam Kangkung: Tugas Ketahanan Pangan Mapel PPLG',
       img: 'assets/projects/project-2.jpg',
       info: [
         { label: 'Mata Pelajaran', value: 'PPLG SMK Krian 1 Sidoarjo' },
@@ -232,7 +234,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { label: 'Bahasa', value: 'Python' },
         { label: 'Format', value: 'Jupyter Notebook' }
       ],
-      description: 'NoteBook Extrakurikuler AI Study Club yang memuat eksplorasi kode pemrograman Python, manipulasi data array, serta pengenalan algoritma pembelajaran mesin (Machine Learning). Proyek ini disusun sebagai dokumentasi belajar terstruktur dalam mendalami kecerdasan buatan.',
+      description: 'Notebook Extrakurikuler AI Study Club yang memuat eksplorasi kode pemrograman Python, manipulasi data array, serta pengenalan algoritma pembelajaran mesin (Machine Learning). Proyek ini disusun sebagai dokumentasi belajar terstruktur dalam mendalami kecerdasan buatan.',
       highlightsTitle: 'Materi & Eksplorasi Notebook',
       highlights: [
         'Eksplorasi sintaksis dan struktur data Python untuk pemrosesan dataset.',
@@ -349,6 +351,41 @@ document.addEventListener('DOMContentLoaded', () => {
         {
           label: 'GitHub Profil ↗',
           url: 'https://github.com/ramadhanirahmat47-rgb',
+          isPrimary: false
+        }
+      ]
+    },
+    'project-8': {
+      type: 'project',
+      badge: 'AI',
+      subBadge: 'Computer Vision & TensorFlow.js',
+      title: 'AI Ekspresi Wajah : Real-Time Facial Emotion Detection',
+      img: 'assets/projects/project-8.png',
+      info: [
+        { label: 'Platform', value: 'Web AI (Live Webcam Real-Time)' },
+        { label: 'Teknologi', value: 'TensorFlow.js & Teachable Machine' },
+        { label: 'Klasifikasi Emosi', value: 'Senang, Sedih, dan Netral' },
+        { label: 'Deployment', value: 'Vercel (ai-ekspresi.vercel.app)' }
+      ],
+      description: 'Aplikasi web cerdas berbasis Computer Vision yang memanfaatkan Google Teachable Machine dan TensorFlow.js untuk mengenali serta mengklasifikasikan ekspresi wajah manusia (senang, sedih, dan netral) secara real-time langsung melalui browser dengan kamera web.',
+      highlightsTitle: 'Fitur & Keunggulan Project',
+      highlights: [
+        'Deteksi emosi wajah manusia secara langsung (real-time stream) via kamera web.',
+        'Pelatihan dataset ekspresi wajah menggunakan Google Teachable Machine.',
+        'Integrasi dan inferensi model pembelajaran mesin di sisi client dengan TensorFlow.js.',
+        'Visualisasi status kamera, bounding box, dan persentase tingkat keyakinan (confidence score).',
+        'Aplikasi web interaktif tanpa backend tambahan, telah di-deploy dan dapat diuji langsung di Vercel.'
+      ],
+      tags: ['TensorFlow.js', 'Teachable Machine', 'Computer Vision', 'AI', 'Web AI', 'JavaScript', 'Vercel'],
+      links: [
+        {
+          label: 'Buka Live Demo Website (Vercel) ↗',
+          url: 'https://ai-ekspresi.vercel.app/',
+          isPrimary: true
+        },
+        {
+          label: 'Lihat Dokumentasi Gambar ↗',
+          url: 'assets/projects/project-8.png',
           isPrimary: false
         }
       ]
@@ -506,15 +543,15 @@ document.addEventListener('DOMContentLoaded', () => {
         { label: 'Tahun Kelulusan', value: '2026' },
         { label: 'ID Kredensial', value: 'KEXLM1KEYZG2', isCopyable: true }
       ],
-      description: 'Sertifikasi kompetensi kelulusan resmi dari Dicoding Academy yang memvalidasi keahlian dalam menerapkan metodologi Spec-Driven Development (SDD) menggunakan tools Kiro. Pembelajaran berfokus pada penyusunan spesifikasi perangkat lunak yang presisi dan terstruktur, penyelarasan kebutuhan teknis dengan arsitektur kode, serta optimalisasi alur kerja rekayasa software modern untuk menghasilkan produk perangkat lunak yang andal, konsisten, dan mudah dirawat.',
+      description: 'Sertifikasi kompetensi resmi dari Dicoding Academy mengenai implementasi metodologi Spec-Driven Development (SDD) dengan Kiro. Pelatihan ini memvalidasi keahlian dalam merancang arsitektur perangkat lunak berbasis spesifikasi terstandarisasi, memanfaatkan AI agent untuk efisiensi perancangan sistem dan penulisan kode, serta memastikan keandalan produk perangkat lunak.',
       highlightsTitle: 'Kompetensi & Materi Yang Dikuasai',
       highlights: [
-        'Memahami konsep dasar dan alur kerja metodologi Spec-Driven Development (SDD)',
-        'Pemanfaatan Kiro untuk perancangan spesifikasi sistem dan dokumentasi teknis yang jelas',
-        'Penerjemahan kebutuhan sistem menjadi panduan spesifikasi dan implementasi kode terstruktur',
-        'Lulus evaluasi ujian kelulusan resmi kompetensi berstandar industri dari Dicoding Academy'
+        'Pemahaman mendalam mengenai paradigma Spec-Driven Development (SDD) dalam software engineering',
+        'Penyusunan spesifikasi teknis dan perancangan arsitektur perangkat lunak yang presisi',
+        'Integrasi AI-assisted development menggunakan Kiro untuk akselerasi siklus pengembangan',
+        'Lulus evaluasi dan verifikasi kompetensi industri berstandar Dicoding Indonesia'
       ],
-      tags: ['Spec-Driven Development', 'Kiro', 'Software Engineering', 'System Specification', 'Dicoding'],
+      tags: ['Spec-Driven Development', 'Kiro', 'Software Engineering', 'AI Coding', 'Dicoding'],
       links: [
         {
           label: 'Verifikasi Sertifikat Resmi (Dicoding) ↗',
@@ -555,8 +592,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }).join('');
 
     const highlightsHtml = (data.highlights || []).map(hl => {
-      const icon = data.type === 'project' 
-        ? '<span class="accent-star">✦</span>' 
+      const icon = data.type === 'project'
+        ? '<span class="accent-star">✦</span>'
         : '<span class="check-mark">✓</span>';
       return `<li>${icon}<span>${hl}</span></li>`;
     }).join('');
@@ -858,5 +895,52 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 2500);
   }
 
-});
 
+  /* --------------------------------------------------------------------------
+     8. MENU AKTIF MENGIKUTI POSISI SCROLL (SCROLL-SPY)
+     Menandai tautan menu sesuai bagian halaman yang sedang dilihat.
+     -------------------------------------------------------------------------- */
+  const pageSections = document.querySelectorAll('main section[id]');
+
+  if (pageSections.length && 'IntersectionObserver' in window) {
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const currentId = entry.target.id;
+          navLinks.forEach(link => {
+            link.classList.toggle('active', link.getAttribute('href') === '#' + currentId);
+          });
+        }
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+
+    pageSections.forEach(section => sectionObserver.observe(section));
+  }
+
+  /* --------------------------------------------------------------------------
+     9. ANIMASI BAR LEVEL KEAHLIAN
+     Bar terisi perlahan saat bagian Keahlian muncul di layar.
+     -------------------------------------------------------------------------- */
+  const skillBars = document.querySelectorAll('.bar-val');
+
+  if (skillBars.length && 'IntersectionObserver' in window) {
+    // Simpan lebar tujuan, lalu kosongkan bar sebelum animasi dimulai
+    skillBars.forEach(bar => {
+      bar.dataset.target = bar.style.width;
+      bar.style.width = '0%';
+    });
+
+    const barObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const bar = entry.target.querySelector('.bar-val');
+          bar.style.width = bar.dataset.target;
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.4 });
+
+    skillBars.forEach(bar => barObserver.observe(bar.parentElement));
+  }
+
+});
