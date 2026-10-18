@@ -1,22 +1,3 @@
-/**
- * ============================================================================
- * JAVASCRIPT PORTOFOLIO — RAHMAT RAMADHANI (SMK KRIAN 1 SIDOARJO)
- * ============================================================================
- * Kode ini dibuat sesederhana mungkin (Vanilla JS) agar mudah dipelajari
- * dan mudah dijelaskan kepada guru atau penguji.
- *
- * Daftar Fungsi:
- * 1. Menu Navigasi Mobile (Hamburger Menu)
- * 2. Garis Indikator Scroll & Header Efek
- * 3. Filter Kategori Proyek (Semua, UI/UX, Farm, Python, IoT, Web, AI)
- * 4. Modal Popup Detail Proyek & Sertifikat (Deskripsi Rinci & Link)
- * 5. Salin Alamat Email ke Clipboard
- * 6. Formulir Kontak (Mailto)
- * 7. Tombol Kembali ke Atas (Back to Top) & Notifikasi Toast
- * 8. Menu Aktif Mengikuti Posisi Scroll (Scroll-Spy)
- * 9. Animasi Bar Level Keahlian
- * ============================================================================
- */
 
 'use strict';
 
