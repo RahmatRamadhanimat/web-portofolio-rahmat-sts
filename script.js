@@ -371,6 +371,42 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       ]
     },
+
+    'cert-9': {
+      type: 'certificate',
+      badge: 'Sertifikasi Resmi',
+      subBadge: 'Solo Learn • 2026',
+      title: 'Introduce To Python',
+      img: 'assets/certificates/cert-9.png',
+      certId: '07Z6QR412ZQR',
+      verifyUrl: 'https://www.sololearn.com/certificates/CC-RQLCTKWP',
+      info: [
+        { label: 'Penerbit Sertifikat', value: 'SoloLearn' },
+        { label: 'Tahun Kelulusan', value: '2026' },
+        { label: 'ID Kredensial', value: 'CC-RQLCTKWP', isCopyable: true }
+      ],
+      description: 'Sertifikasi kompetensi pemrograman Python dari Dicoding Academy yang dirancang untuk membangun fondasi penulisan kode berstandar industri. Meliputi sintaksis dasar Python, tipe data terstruktur, alur kendali logika program, pembuatan fungsi modular, hingga pengelolaan berkas dan penanganan eksepsi.',
+      highlightsTitle: 'Kompetensi & Materi Yang Dikuasai',
+      highlights: [
+        'Penguasaan sintaksis inti Python: tipe data primitif, list, tuple, set, dan dictionary',
+        'Penerapan struktur kontrol alur logika: percabangan IF-ELIF-ELSE dan perulangan FOR/WHILE',
+        'Modularitas fungsi, passing arguments, scope variabel, dan Clean Code',
+        'Penanganan error secara aman dengan mekanisme try-except blocks'
+      ],
+      tags: ['Python', 'Programming Logic', 'Data Structure'],
+      links: [
+        {
+          label: 'Verifikasi Sertifikat Resmi (SoloLearn) ↗',
+          url: 'https://www.sololearn.com/certificates/CC-RQLCTKWP',
+          isPrimary: true
+        },
+        {
+          label: 'Lihat Gambar Sertifikat ↗',
+          url: 'assets/certificates/cert-9.png',
+          isPrimary: false
+        }
+      ]
+    },
     'cert-1': {
       type: 'certificate',
       badge: 'Sertifikasi Resmi',
