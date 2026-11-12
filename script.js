@@ -385,7 +385,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { label: 'Tahun Kelulusan', value: '2026' },
         { label: 'ID Kredensial', value: 'CC-RQLCTKWP', isCopyable: true }
       ],
-      description: 'Sertifikasi kompetensi pemrograman Python dari Dicoding Academy yang dirancang untuk membangun fondasi penulisan kode berstandar industri. Meliputi sintaksis dasar Python, tipe data terstruktur, alur kendali logika program, pembuatan fungsi modular, hingga pengelolaan berkas dan penanganan eksepsi.',
+      description: 'Sertifikasi kompetensi pemrograman Python dari SoloLearn yang dirancang untuk membangun fondasi penulisan kode berstandar industri. Meliputi sintaksis dasar Python, tipe data terstruktur, alur kendali logika program, pembuatan fungsi modular, hingga pengelolaan berkas dan penanganan eksepsi.',
       highlightsTitle: 'Kompetensi & Materi Yang Dikuasai',
       highlights: [
         'Penguasaan sintaksis inti Python: tipe data primitif, list, tuple, set, dan dictionary',
